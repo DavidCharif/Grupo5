@@ -1,9 +1,13 @@
-.cabecera {
-    background-color: rgb(207, 207, 180);
+#tituloProyecto {
+    background-color: rgb(178, 202, 209);
 }
-.titulo {
-    color:blueviolet;
+#titulo{
+    color:goldenrod; text-align: center; text-shadow: 0 0 2px rgb(0, 0, 0);
 }
 body{
     background-color: darkgrey;
+}
+#botones {
+    text-align: center;
+    align-items: center;  
 }
