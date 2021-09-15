@@ -2,14 +2,15 @@
 Estudiantes Mision TIC 2022
 
 
-Para clonar 
-
+Para añadir el remoto del grupo
 $ git remote add origin https://github.com/DavidCharif/Grupo5
-# Set a new remote
 
-$ git remote -v
-# Verify new remote
+
+
 # Para confirmar que si es
+$ git remote -v
+
+
 > origin  https://github.com/DavidCharif/Grupo5 (fetch)
 > origin  https://github.com/DavidCharif/Grupo5 (push) 
 
