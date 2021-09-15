@@ -4,9 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/estilos.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Formulario de Registro</title>
 </head>
+
 <body>
-    
+    <h3>Registro</h3>
+
+    <form action="/send_to_action_page" method="post"></form>
+        <ul>
+            <li>
+                <label for="name">Nombre</label><br>
+                <input type="text" id="name" name="user_name"><br>
+            </li>
+
+            <li>
+                <label for="last_name">Apellido</label><br>
+                <input type="text" id="last_name" name="user_last_name"><br>
+            </li>
+            
+            <li>
+                <label for="phone">Teléfono</label><br>
+                <input type="tel" id="phone" name="user_phone_number"><br>
+            </li>
+            
+            <li>
+                <label for="mail">Correo</label><br>
+                <input type="email" id="mail" name="user_email"><br>
+            </li>
+            
+            <li>
+                <label for="pswd">Contraseña</label><br>
+                <input type="password" id="pswd" name="user_password">
+            </li>
+
+            <li>
+                <button type="submit">Registrar</button>
+            </li>
+        </ul>
+    </form>
 </body>
 </html>
