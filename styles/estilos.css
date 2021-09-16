@@ -23,17 +23,26 @@ header .overlay{
 	*/
 }
 
-h1 {
+#titulo {
 	font-family: 'Roboto', sans-serif;
 	font-size: 50px;
 	margin-bottom: 30px;
 }
+#titulo:hover{
+	color: darkred;
+}
 
-p{
+.txtparrafo{
     color: rgb(255, 255, 255);
 	font-size: 10;
 }
-h3, p , label {
+.txtparrafo:hover{
+	color: yellow;
+}
+h3:hover{
+	color:red;
+}
+h3, .txtparrafo , label {
 	font-family: 'Roboto', sans-serif;
 	margin-bottom: 30px;
     font-weight: bold;
