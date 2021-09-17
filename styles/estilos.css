@@ -27,7 +27,7 @@ header .overlay{
 	font-family: 'Roboto', sans-serif;
 	font-size: 50px;
 	margin-bottom: 30px;
-	font-size:6vw;
+	font-size:calc(2vw + 2vh + 1vmin);
 	text-shadow: 0px 0px 5px rgb(0, 0, 0);
 }
 #titulo:hover{
@@ -35,11 +35,11 @@ header .overlay{
 	text-shadow: 0px 0px 5px rgb(255, 255, 255);
 }
 h3{
-	font-size:4vw;
+	font-size: calc(1.5vw + 1.5vh + 0.5vmin);
 }
 .txtparrafo{
     color: rgb(255, 255, 255);
-	font-size:3vw;
+	font-size: calc(1vw + 1vh + 0.5vmin);
 	text-shadow: 0px 0px 5px rgb(0, 0, 0);
 }
 .txtparrafo:hover{
@@ -71,6 +71,7 @@ button {
 	background: #fff;
 	margin-bottom: 50px;
 	box-shadow: 0 3px 20px 0 #0000003b;
+	font-size: calc(1.5vw + 1.5vh + 0.5vmin);
 }
 button:hover{
 	cursor:pointer;
