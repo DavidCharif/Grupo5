@@ -6,11 +6,13 @@
     <link href="styles/estilos.css" rel="stylesheet">
     <title>Formulario de Registro</title>
 </head>
-
+<header>
+    <div class="overlay">
 <body>
     <h3>Registro</h3>
 
-    <form action="/send_to_action_page" method="post"></form>
+    <form action="/send_to_action_page" method="post" id="form-registro">
+        <!-- id added as instructed for sprint 1 -->
         <ul>
             <li>
                 <label for="name">Nombre</label><br>
@@ -34,13 +36,16 @@
             
             <li>
                 <label for="pswd">Contraseña</label><br>
-                <input type="password" id="pswd" name="user_password">
+                <input type="password" id="pswd" name="user_password"><br>
             </li>
 
             <li>
-                <button type="submit">Registrar</button>
+                <input type="submit" id="btn-submit-form" value="Registrar">
+                <!-- input tag used as instructed for sprint 1 -->
             </li>
         </ul>
     </form>
+    </div>
+</header>
 </body>
 </html>
