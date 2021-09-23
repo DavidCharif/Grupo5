@@ -5,6 +5,7 @@
     
     x.style.background = "red";
 return false;}
-    else if (y.length == 7){x.style.background = "lightgreen";
+    else if (y.length == 7)
+    {x.style.background = "lightgreen";
 return true; }
     }
