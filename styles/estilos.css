@@ -21,6 +21,7 @@ header .overlay{
 	padding: 50px;
 	color: rgb(255, 255, 255);
 	
+	
     
     /*
   background-image: linear-gradient( 135deg, #ffffff69 10%, #ff00006b 100%);
@@ -86,6 +87,7 @@ button:hover{
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
 }
+/*
 #form-registro {
 	border: 1px solid black;
     padding:10px;
@@ -93,3 +95,4 @@ button:hover{
 	overflow: auto;
 	position: relative;
 }
+*/
