@@ -9,3 +9,6 @@ return false;}
     {x.style.background = "lightgreen";
 return true; }
     }
+
+export {checkTelefono/* separar funciones con comas conforme se van agregando*/};
+    
