@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/estilos.css" rel="stylesheet">
     <script src="scripts/form.js"> </script>
+    
     <title>Formulario de Registro</title>
 </head>
 <header>
@@ -26,8 +27,8 @@
             </li>
             
             <li>
-                <label for="phone">Teléfono</label><br>
-                <input type="tel" id="phone" name="user_phone_number"><br>
+                <label for="phone" >Teléfono</label><br>
+                <input type="number" id="phone" name="user_phone_number" onfocusout="checkTelefono(this)" required size="7"><br>
             </li>
             
             <li>
@@ -48,5 +49,6 @@
     </form>
     </div>
 </header>
+<div>
 </body>
 </html>
