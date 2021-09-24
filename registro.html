@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/estilos.css" rel="stylesheet">
     <title>Formulario de Registro</title>
+    <script src="scripts/form.js" defer></script>
 </head>
 <header>
     <div class="overlay">
@@ -36,7 +37,10 @@
             
             <li>
                 <label for="pswd">Contraseña</label><br>
-                <input type="password" id="pswd" name="user_password"><br>
+                <input type="password" id="pswd" name="user_password"
+                autocomplete="new-password" minlength="8"
+                pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}" 
+                oninput="checkContrasena(valor)" required><br>
             </li>
 
             <li>
