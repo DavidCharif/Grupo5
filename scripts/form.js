@@ -1,5 +1,7 @@
-function checkTelefono(x){
-    y = x.value;
+function checkTelefono(){
+    /*y = x.value;*/
+    let x = document.getElementById("telefono");
+    let y = document.getElementById("telefono").value;
     if (y.length > 7 || y.length < 7){
         x.style.background = "red";
         return false;}
@@ -7,18 +9,16 @@ function checkTelefono(x){
         x.style.background = "lightgreen";
         return true; }
     }
-/*
-export { checkTelefono}
-*/
-function checkContrasena(x) {
-    let password = x.value;
-    /*let password = document.getElementById("pswd").value;*/
+
+function checkContrasena() {
+    let x = document.getElementById("password");
+    let password = document.getElementById("password").value;
 
 
     let upperCaseValidation = /[A-Z]/g;
     let lowerCaseValidation = /[a-z]/g;
     let numberValidation = /[0-9]/g;
-
+ 
     if (password.length != 0) {
 
         if (password.match(upperCaseValidation)) {
@@ -35,9 +35,9 @@ function checkContrasena(x) {
         }
     } else {
 
-        x.style.background = "red";
-        alert("La contraseña debe contener mínimo:\nUna (1) mayúscula,\nUna (1) minúscula,\nUn (1) número,\nOcho (8) ó más caracteres.");
-        return false;
+    x.style.background = "red";
+    alert("La contraseña debe contener mínimo:\nUna (1) mayúscula,\nUna (1) minúscula,\nUn (1) número,\nOcho (8) ó más caracteres.");
+    return false;
     }
 
     }
@@ -45,8 +45,10 @@ function checkContrasena(x) {
 
 //Funcion para validar Apellido
 
-function checkApellido(valor){
-    let lastname = valor.value;
+function checkApellido(){
+    let valor = document.getElementById("apellidos");
+    let lastname = document.getElementById("apellidos").value;
+    /*let lastname = valor.value;*/
     let alphabet = /^[A-Za-z]+$/;
     if (lastname != ""){
         if(lastname.match(alphabet)) {
@@ -73,3 +75,6 @@ function checkApellido(valor){
         return false;
     }
 }
+
+
+module.exports= {checkApellido, checkContrasena,checkTelefono};

@@ -17,29 +17,29 @@
         <ul>
             <li>
                 <label for="name">Nombre</label><br>
-                <input type="text" id="name" name="user_name"><br>
+                <input type="text" id="nombre" name="user_name" onblur="checkNombre()"><br>
             </li>
 
             <li>
                 <label for="last_name">Apellido</label><br>
-                <input type="text" id="last_name" name="user_last_name" onblur="checkApellido(this)"><br>
+                <input type="text" id="apellidos" name="user_last_name" onblur="checkApellido()"><br>
             </li> 
             
             <li>
                 <label for="phone" >Teléfono</label><br>
-                <input type="number" id="phone" name="user_phone_number" onblur="checkTelefono(this)" ><br>
+                <input type="number" id="telefono" name="user_phone_number" onblur="checkTelefono()" ><br>
             </li>
             
             <li>
                 <label for="mail">Correo</label><br>
-                <input type="email" id="mail" name="user_email"><br>
+                <input type="email" id="correo" name="user_email" onblur="checkEmail()" ><br>
             </li>
             
             <li>
                 <label for="pswd">Contraseña</label><br>
 
-                <input type="password" id="pswd" name="user_password"              
-                onblur="checkContrasena(this)"> <br>
+                <input type="password" id="password" name="user_password"              
+                onblur="checkContrasena(this)" > <br>
 
             </li>
 
