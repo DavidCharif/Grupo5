@@ -42,3 +42,34 @@ function checkContrasena(x) {
 
     }
 }
+
+//Funcion para validar Apellido
+
+function checkApellido(valor){
+    let lastname = valor.value;
+    let alphabet = /^[A-Za-z]+$/;
+    if (lastname != ""){
+        if(lastname.match(alphabet)) {
+            if(lastname.length >=4 && lastname.length<=30){
+                alert("APELLIDO CORRECTO");
+                valor.style.background = "lightgreen";
+                return true; 
+            }
+            else{
+                alert("DEBE SER MAYOR DE 4 Y MENOR DE 7 ");
+                valor.style.background = "red";
+                return false;
+            }
+        }
+        else {
+            alert("INGRESE SOLO ALFABETO");
+            valor.style.background = "red";
+            return false;
+        }
+    }
+    else{
+        alert("CAMPO NULO");
+        valor.style.background = "red";
+        return false;
+    }
+}
