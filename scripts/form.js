@@ -10,6 +10,25 @@ function checkTelefono(){
         return true; }
     }
 
+function checkCorreo(){
+   let val= document.getElementById("correo") ;
+   let valor= document.getElementById("correo").value;
+   let validar="falso";
+   emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+   if(emailRegex.test(valor)){
+       validar="verdadero";
+   }
+   if (validar=="falso"){
+       val.style.background="red";
+   }
+   else{
+       val.style.background = "white";
+   }    
+
+   alert(validar);
+   return validar;
+}
+
 function checkContrasena() {
     let x = document.getElementById("password");
     let password = document.getElementById("password").value;
@@ -77,4 +96,4 @@ function checkApellido(){
 }
 
 
-module.exports= {checkApellido, checkContrasena,checkTelefono};
+module.exports= {checkApellido, checkContrasena,checkTelefono,checkCorreo};
