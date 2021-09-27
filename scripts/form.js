@@ -26,8 +26,17 @@ function checkCorreo(){
    }    
 
    alert(validar);
+   
+   
+   /*
    return validar;
+     
+   Compara las string y si es verdadero devuelve true si no false*/
+   var bool_value = validar == 'verdadero';
+   /*console.log(bool_value);*/
+   return bool_value;
 }
+
 
 function checkContrasena() {
     let x = document.getElementById("password");
@@ -94,6 +103,36 @@ function checkApellido(){
         return false;
     }
 }
+function checkNombre(){
+    let valor = document.getElementById("nombre");
+    let lastname = document.getElementById("nombre").value;
+    /*let lastname = valor.value;*/
+    let alphabet = /^[A-Za-z]+$/;
+    if (lastname != ""){
+        if(lastname.match(alphabet)) {
+            if(lastname.length >=4 && lastname.length<=30){
+                alert("Nombre correcto");
+                valor.style.background = "lightgreen";
+                return true; 
+            }
+            else{
+                alert("DEBE SER MAYOR DE 4 Y MENOR DE 7 ");
+                valor.style.background = "red";
+                return false;
+            }
+        }
+        else {
+            alert("INGRESE SOLO ALFABETO");
+            valor.style.background = "red";
+            return false;
+        }
+    }
+    else{
+        alert("CAMPO NULO");
+        valor.style.background = "red";
+        return false;
+    }
+}
 
 
-module.exports= {checkApellido, checkContrasena,checkTelefono,checkCorreo};
+module.exports= {checkApellido, checkContrasena,checkTelefono,checkCorreo, checkNombre};
