@@ -11,3 +11,9 @@ class Usuario{
     }
    
 }
+
+// FUNCION FILTRA CORREOS GMAIL.COM
+function filtrarCorreo(){
+    let gmail = listadeUsuarios.filter(UsuarioGmail => UsuarioGmail.correo.includes('@gmail.com'));
+    console.log(gmail);
+}
