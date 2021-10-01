@@ -134,5 +134,4 @@ function checkNombre(){
     }
 }
 
-
 module.exports= {checkApellido, checkContrasena,checkTelefono,checkCorreo, checkNombre};
