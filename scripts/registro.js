@@ -15,9 +15,11 @@ function agregarRegistro() {
 }
 
 // FUNCION FILTRA CORREOS GMAIL.COM
-function filtrarCorreo(){
-    let gmail = registros.filter(UsuarioGmail => UsuarioGmail.correo.includes('@gmail.com'));
+function filtrarCorreo(array){
+    //se agrega variable
+    let gmail = array.filter(UsuarioGmail => UsuarioGmail.email.includes('@gmail.com'));
     console.log(gmail);
+    return gmail;
 }
 
 module.exports.registros = registros; // Este no me cuadra
