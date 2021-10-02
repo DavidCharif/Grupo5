@@ -24,22 +24,23 @@ function filtrarCorreo(array){
 
 //FUNCION ORDENAR CORREOS 
 function ordenarArreglo(arreglo){
-    array.arreglo.sort(a,b)=>{
-        if(a.apellido.tolowerCase()==arreglo.apellido.tolowerCase()){
+    arreglo.sort((a,b)=>{
+        if(a.apellido.toLowerCase()==b.apellido.toLowerCase()){
             return 0;
         }
-        else if(a.apellido.tolowerCase()>arreglo.apellido.tolowerCase()){
+        else if(a.apellido.toLowerCase()>b.apellido.toLowerCase()){
             return 1;
         }
         else{
             return -1;
         }
         console.log(arreglo);
-    }
+    })
+    return arreglo
 
 }
 
 module.exports.registros = registros; // Este no me cuadra
 module.exports.filtrarCorreo = filtrarCorreo;
-/*module.exports.ordenarArreglo = ordenarArreglo;*/
+module.exports.ordenarArreglo = ordenarArreglo;
 module.exports.agregarRegistro = agregarRegistro;
