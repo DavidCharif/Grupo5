@@ -22,6 +22,23 @@ function filtrarCorreo(array){
     return gmail;
 }
 
+//FUNCION ORDENAR CORREOS 
+function ordenarArreglo(arreglo){
+    array.arreglo.sort(a,b)=>{
+        if(a.apellido.tolowerCase()==arreglo.apellido.tolowerCase()){
+            return 0;
+        }
+        else if(a.apellido.tolowerCase()>arreglo.apellido.tolowerCase()){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+        console.log(arreglo);
+    }
+
+}
+
 module.exports.registros = registros; // Este no me cuadra
 module.exports.filtrarCorreo = filtrarCorreo;
 /*module.exports.ordenarArreglo = ordenarArreglo;*/
