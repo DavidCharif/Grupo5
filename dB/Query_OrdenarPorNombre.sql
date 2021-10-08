@@ -1,5 +1,5 @@
-select nombre,
+SELECT nombre,
     apellido,
-    correo,
-    from Usuarios
-    order by nombre asc;
+    correo
+    FROM Usuarios
+    ORDER BY nombre ASC;

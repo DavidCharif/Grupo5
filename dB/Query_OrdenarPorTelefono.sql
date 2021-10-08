@@ -1,2 +1,2 @@
-select nombre, apellido, telefono
-from USUARIOS order by telefono desc;
+SELECT nombre, apellido, telefono
+FROM Usuarios ORDER BY telefono DESC;
