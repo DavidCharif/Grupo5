@@ -1,8 +1,19 @@
 let registros = [];
 
 function login() {
-
+    correo = document.getElementById("correo").value; 
+    contrasena = document.getElementById("contrasena").value;
+    
+    let usuario = registros.some(usuario => usuario.correo === correo && usuario.contrasena === contrasena);
+        if (usuario == true) {
+            validarCAPTCHA();
+            return true;
+        }
+        else {
+        return false;
+        }
 }
+
 
 function agregarRegistro() {
     
