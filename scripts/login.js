@@ -5,7 +5,15 @@ function login() {
 }
 
 function agregarRegistro() {
-
+    
+        nombre = document.getElementById("nombre").value,
+        apellido = document.getElementById("apellido").value,
+        telefono = document.getElementById("telefono").value,
+        correo = document.getElementById("correo").value,
+        contrasena = document.getElementById("contrasena").value
+    let usuario = new Usuario(nombre,apellido,telefono,correo,contrasena);
+    
+    registros.push(usuario);
 }
 
 function validarCAPTCHA(valor) {
