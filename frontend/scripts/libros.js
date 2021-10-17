@@ -8,8 +8,6 @@ class Book{
     }     
 }
 
-
-
 let listalibros = [];
 const edipo = new Book("Edipo Rey", "Sofocles" , "Esta es una novela del género de tragedias que ha sido conocida por ser unas de las mejores obras de Sófocles, si bien es cierto que no tiene una fecha específica de cuando fue creada, se considera que pudo ser escrita alrededor del año 430 a. C, la misma pudo ser representada teatralmente hacia el año 429 a. C.", "429 a. C", "/img/edipo.jpg");
 const milyuna = new Book("Las mil y una noches", "Anonimo", "es una recopilación medieval de cuentos tradicionales del Oriente Medio, que utiliza la forma del relato enmarcado. El núcleo de estas historias está formado por un antiguo libro persa llamado Hazâr afsâna (mil leyendas)", "850 d. C","/img/MILYUNA.jpg");
