@@ -26,17 +26,27 @@ body{
 
   #fondolibros{
 	  background-color: #008CBA;
-	  height: 600px;
+	  
 	  text-align: center;
 	  width: 50%;	  
 	  padding: 5%;
+	  border-style: solid;
+	  border-width: 5px;
 
+  }
+  #fondolibros img{
+	border-style:dotted;
+	border-width: 5px;
+	  
   }
   #descripcion{
 	  background-color: rgb(145, 137, 137);
-	  height: 600px;
+	  
 	  width: 50%;	  
 	  padding: 5%;
+	  text-align: center;
+	  border-style: solid;
+	  border-width: 5px;
   }
 
 #library {
@@ -166,14 +176,26 @@ label:hover{
 	color:black;
 	text-shadow: 0px 0px 5px rgb(255, 255, 255);
 }
+h1 .titulolibro{
+	color: aliceblue;
+
+}
 h3, label {
 	font-family: 'Roboto', sans-serif;
 	margin-bottom: 30px;
 	size: 10em;
     font-weight: bold;
-	color: rgb(255, 255, 255);
-	text-shadow: 0px 0px 5px rgb(0, 0, 0);
+	color: rgb(0, 0, 0);
+	text-shadow: 0px 0px 5px rgb(255, 251, 251);
     
+}
+#descripcion p{
+	font-family: 'Roboto', sans-serif;
+	margin-bottom: 30px;
+	size: 10em;
+    font-weight: bold;
+	color: rgb(0, 0, 0);
+	text-shadow: 0px 0px 5px rgb(255, 251, 251);
 }
 #titulo {
 	color: rgb(255, 255, 255);

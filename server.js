@@ -3,8 +3,8 @@ import path from "path";
 import { addAbortSignal } from "stream";
 import { listalibros } from "../srint1/frontend/scripts/libros.js";
 const app = express();
-const dirForm = path.resolve("C:/Users/David/Desktop/uda/UDEA/Ciclo 3/html/srint1")
-
+const dirForm = path.resolve("../srint1")
+// Iniciamos el servidor en la carpeta con los archivos necesarios
 app.use(express.static("frontend"));
 
 app.listen("3000", function(){
