@@ -15,10 +15,8 @@
       <li><a href="/inicio">Inicio</a></li>
       <li><a href="#news">Libros</a></li>
       <li><a href="#contact">Carrito de compras</a></li>
-      <li><a href="#about">Sobre nosotros
-    
-      </a></li>
-            </ul>
+      <li><a href="#about">Sobre nosotros</a></li>
+    </ul>
         </nav>
         <header>
             <div class="overlay">
@@ -33,7 +31,7 @@
                     <div id="txt-cabecera">
                         <br><br>
                         <p class="txtparrafo">
-                            Aqui puedes encontrar libros gratuitos y audiolibros de pago.
+                            Aquí puedes encontrar libros gratuitos y audiolibros de pago.
                             Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
         
                         </p>
@@ -53,6 +51,9 @@
             
         </div>
         <div id="descripcion">
+            <label>Selecciona la voz que gustes</label> <br>
+            <select id="voice"></select>
+            <hr><br>
                     <h1 id="titulolibro">Titulo</h1>
                     <hr>
                    <h3><%= mensaje._nombre %> </h3>
@@ -70,6 +71,11 @@
         </div>
 
     </section>
+    <section id="texto">
+        <div >
+            <iframe id="textolibro" src="<%-mensaje._urlLibro %>" frameborder="1"></iframe>
+        </div>
+    </section>
     <footer>
         <nav>
             <ul>
@@ -86,18 +92,51 @@
 </body>
 <script src="scripts/libros.js"></script>
 <script>
+    var voiceSelect = document.getElementById('voice');
+function loadVoices() {
+  // Fetch the available voices.
+	var voices = speechSynthesis.getVoices();
+    console.log(voices);
+  
+  // Loop through each of the voices.
+  
+	voices.forEach(function(voice, i) {
+    // Create a new option element.
+    if (voice.lang == 'es-ES' || voice.lang == 'es-MX' ){
+		var option = document.createElement('option');
     
-    $(document).ready(function(){
-	$("a, .titulo-noticia, .titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
+    // Set the options value and text.
+		option.value = voice.name;
+		option.innerHTML = voice.name;
+		  
+    // Add the option to the voice selector.
+		voiceSelect.appendChild(option);
+	}});
+}
+
+// Execute loadVoices.
+loadVoices();
+// Chrome loads voices asynchronously.
+window.speechSynthesis.onvoiceschanged = function(e) {
+  loadVoices();
+}; 
+
+
+    $(function(){
+	$("a, #textolibro, .titulo-noticia, .titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
     event.preventDefault();
     var nacordeon = $(this);
     var utterance = new SpeechSynthesisUtterance();
-    
+   
     utterance.text = $(this).text();
     utterance.rate = 1;
+    
+    if (voiceSelect.value) {
+		utterance.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
+	}
     utterance.pitch = 1;
     utterance.volume = 9;
-    utterance.lang = ("es-ES");
+    
     
     utterance.onstart = function() {
         console.log('Inicio Oradora');
@@ -118,7 +157,5 @@
     console.log('Oradora cancelada');
 });
 });
-
-
 </script>
 </html>

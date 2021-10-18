@@ -23,6 +23,10 @@ body{
   flex-direction: row;
   flex-wrap: wrap;
 }
+iframe {
+	width: 100%;
+	height: 900px;
+}
 
   #fondolibros{
 	  background-color: #008CBA;
