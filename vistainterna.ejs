@@ -10,13 +10,32 @@
 </head>
 <body>
     
-        <nav>
+    <nav>
             <ul>
       <li><a href="/inicio">Inicio</a></li>
       <li><a href="#news">Libros</a></li>
       <li><a href="#contact">Carrito de compras</a></li>
       <li><a href="#about">Sobre nosotros</a></li>
+      <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+      <li><label>Selecciona la voz que gustes</label>
+    <select id="voice"></select></li>
+    <li>
+    <label for="volume">Volume</label>
+		<input type="range" min="0" max="1" step="0.1" name="volume" id="volume" value="1">
+	</div></li>
+    <li>
+	<div class="option">
+		<label for="rate">Rate</label>
+		<input type="range" min="0.1" max="10" step="0.1" name="rate" id="rate" value="1">
+	</div></li>
+    <li>
+	<div class="option">
+		<label for="pitch">Pitch</label>
+		<input type="range" min="0" max="2" step="0.1" name="pitch" id="pitch" value="1">
+	</div></li>
     </ul>
+    
+    
         </nav>
         <header>
             <div class="overlay">
@@ -51,8 +70,7 @@
             
         </div>
         <div id="descripcion">
-            <label>Selecciona la voz que gustes</label> <br>
-            <select id="voice"></select>
+            
             <hr><br>
                     <h1 id="titulolibro">Titulo</h1>
                     <hr>
@@ -90,9 +108,14 @@
     </footer>
   
 </body>
-<script src="scripts/libros.js"></script>
+
 <script>
     var voiceSelect = document.getElementById('voice');
+    var volumeInput = document.getElementById('volume');
+    var rateInput = document.getElementById('rate');
+    var pitchInput = document.getElementById('pitch');
+
+   
 function loadVoices() {
   // Fetch the available voices.
 	var voices = speechSynthesis.getVoices();
@@ -111,6 +134,7 @@ function loadVoices() {
 		  
     // Add the option to the voice selector.
 		voiceSelect.appendChild(option);
+        
 	}});
 }
 
@@ -120,10 +144,18 @@ loadVoices();
 window.speechSynthesis.onvoiceschanged = function(e) {
   loadVoices();
 }; 
+if (voiceSelect.value) {
+		utterance.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
+	}
 
 
-    $(function(){
-	$("a, #textolibro, .titulo-noticia, .titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
+var iframeDocument = document.getElementsByTagName("iframe").contentDocument;
+  
+    
+// Poner boton para activar la voz
+function activarVoz(){
+    setTimeout(function(){$(function(){    
+	$("a, #textolibro, div ,.desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span" + iframeDocument).hover(function(){
     event.preventDefault();
     var nacordeon = $(this);
     var utterance = new SpeechSynthesisUtterance();
@@ -134,9 +166,10 @@ window.speechSynthesis.onvoiceschanged = function(e) {
     if (voiceSelect.value) {
 		utterance.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
 	}
-    utterance.pitch = 1;
-    utterance.volume = 9;
     
+    utterance.volume = parseFloat(volumeInput.value);
+	utterance.rate = parseFloat(rateInput.value);
+	utterance.pitch = parseFloat(pitchInput.value);
     
     utterance.onstart = function() {
         console.log('Inicio Oradora');
@@ -157,5 +190,6 @@ window.speechSynthesis.onvoiceschanged = function(e) {
     console.log('Oradora cancelada');
 });
 });
+},1000)}
 </script>
 </html>

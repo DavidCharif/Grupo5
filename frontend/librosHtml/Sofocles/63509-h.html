@@ -7,6 +7,7 @@
     <title>
       Edipo rey - Edipo en Colona - Antígona, by Sófocles&mdash;A Project Gutenberg eBook
     </title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="coverpage" href="images/cover.jpg" />
     <style type="text/css">
 
@@ -132,14 +133,83 @@ img         { vertical-align: middle; }
   .screenonly { display: none; visibility: hidden; }
   .pagenum    { display: none; }
   .figright   { float: right; clear: right; }
+  /* Adicionales  */
+  
+</style>
+<style>
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+  
 }
 
-    </style>
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fdd6d6;
+}
+::-webkit-scrollbar {
+  scrollbar-width: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(9, 255, 0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(99, 163, 104);
+}
+</style>
+    
+   
   </head>
 <body>
-
-
+ 
+  <script>
+  var voiceSelect = parent.document.getElementById('voice');      
+  $(function(){
+	$("a, #textolibro, div ,.desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
+    event.preventDefault();
+    var nacordeon = $(this);
+    var utterance = new SpeechSynthesisUtterance();
+   
+    utterance.text = $(this).text();
+    utterance.rate = 1;
+    
+    if (voiceSelect.value) {
+		utterance.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
+	}
+    /*
+    utterance.pitch = 1;
+    utterance.volume = 9;
+    */
+    utterance.volume = parseFloat(parent.volumeInput.value);
+	  utterance.rate = parseFloat(parent.rateInput.value);
+	  utterance.pitch = parseFloat(parent.pitchInput.value);
+    
+    utterance.onstart = function() {
+        console.log('Inicio Oradora');
+    };
+    utterance.addEventListener('error', function(event) { 
+      console.log('An error has occurred with the speech synthesis: ' + event.error);
+    });
+    utterance.onerror = function(event) {
+      console.log('An error has occurred with the speech synthesis: ' + event.error);
+    }
+    utterance.onend = function() {
+        console.log('final Oradora');
+    };
+    
+    window.speechSynthesis.speak(utterance);
+},function(){
+    window.speechSynthesis.cancel();
+    console.log('Oradora cancelada');
+});
+});          
+</script>
 <pre>
+
 
 Project Gutenberg's Edipo rey; Edipo en Colona; Antígona, by Sófocles
 
