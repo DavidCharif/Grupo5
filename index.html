@@ -40,8 +40,11 @@
             <div id="txt-cabecera">
                 <br><br>
                 <p class="txtparrafo">
-                    Aqui puedes encontrar libros gratuitos y audiolibros de pago.
-                    Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
+                  Sabemos que lo más dificil a la hora de leer, es sentarse a hacerlo.
+                  Aquí puedes encontrar libros gratuitos y audiolibros en tu navegador.
+
+                  Crea tu cuenta y guarda tus favoritos.
+                  Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
 
                 </p>
                 
@@ -79,14 +82,14 @@
         </div>
       
         <div class="gallery">
-          <a target="_blank" href="img/divina.jpg">
+          <a >
             <img src="img/divina.jpg" alt="Divina Comedia" onclick="click_libro(2)">
           </a>
           <div class="desc">Dante Alighieri - La Divina Comedia</div>
         </div>
       
         <div class="gallery">
-          <a target="_blank" href="img/rubendario.jpg">
+          <a >
             <img src="img/rubendario.jpg" alt="Azul - Ruben Dario" onclick="click_libro(3)">
           </a>
           <div class="desc">Ruben Dario - Azul</div>
@@ -99,48 +102,41 @@
           </div>
         
           <div class="gallery">
-            <a target="_blank" href="img/historiadesosciudades.jpg">
-              <img src="img/MILYUNA.jpg" alt="Portada Mil y una noches">
+            <a >
+              <img src="img/historiadesosciudades.jpg" alt="Portada Historia de dos ciudades" onclick="click_libro(5)">
             </a>  
-            <div class="desc">Anonimo - Las mil y una noches </div>
+            <div class="desc">Charles Dickens - Historia de dos ciudades </div>
           </div>
         
           <div class="gallery">
-            <a target="_blank" href="img/desastresGuerra.jpg">
+            <a >
               <img src="img/desastresGuerra.jpg" alt="Desastres de la guerra - Goya">
             </a>
             <div class="desc">Goya - Los desastres de la Guerra</div>
           </div>
         
           <div class="gallery">
-            <a target="_blank" href="img/ladroneslondres.jpg">
+            <a >
               <img src="img/ladroneslondres.jpg" alt="Portada los ladrones de londres">
             </a>
             <div class="desc">Charles Dickens - Los ladrones de londres </div>
           </div>
           <div class="gallery">
-            <a target="_blank" href="img/salambo.jpg">
+            <a >
               <img src="img/salambo.jpg" alt="Portada Salambo">
             </a>
             <div class="desc">Gustave Flauvert - Salambó</div>
           </div>
         
           <div class="gallery">
-            <a target="_blank" href="img/lailiada.jpg">
+            <a >
               <img src="img/lailiada.jpg" alt="Portada La Iliada">
             </a>  
             <div class="desc">Homero - La Iliada </div>
           </div>
         
           <div class="gallery">
-            <a target="_blank" href="img/historiadesosciudades.jpg">
-              <img src="img/historiadesosciudades.jpg" alt="Historia de dos ciudades">
-            </a>
-            <div class="desc">Charles Dickens - Historia de dos ciudades</div>
-          </div>
-        
-          <div class="gallery">
-            <a target="_blank" href="img/crimenycastigo.jpg">
+            <a >
               <img src="img/crimenycastigo.jpg" alt="Portada Crimen y castigo">
             </a>
             <div class="desc">Dostoviesky - Crimen y Castigo </div>
@@ -194,7 +190,7 @@ window.speechSynthesis.onvoiceschanged = function(e) {
 }; 
           function activarVoz(){
               $(function(){
-	$("a, #textolibro, .titulo-noticia, .titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
+	$("a, .gallery ,#textolibro, .titulo-noticia, .titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, .accordion-content, .ms-listlink, .ms-rtestate-field").hover(function(){
     event.preventDefault();
     var nacordeon = $(this);
     var utterance = new SpeechSynthesisUtterance();
