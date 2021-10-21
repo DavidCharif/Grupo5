@@ -29,28 +29,31 @@ iframe {
 	
 }
 
-#fondolibros{
-	background-color: #008CBA;
-	
-	text-align: center;
-	width: 50%;	  
-	padding: 5%;
-	border-style: solid;
-	border-width: 5px;
+  #fondolibros{
+	  background-color: #008CBA;
+	  height: 600px;
+	  text-align: center;
+	  width: 50%;	  
+	  padding: 10%;
+	  border-style: solid;
+	  border-width: 5px;
 
   }
+  #descripcion{
+	  background-color: red;
+	  height: 600px;
+	  width: 50%;	  
+	  padding: 10%;
+	  border-style: solid;
+	  border-width: 5px;
+  }
+
+  
   #fondolibros img{
 	border-style:dotted;
 	border-width: 5px;
+	
 	  
-  }
-  #descripcion{
-	background-color: rgb(145, 137, 137);	  
-	width: 50%;	  
-	padding: 5%;
-	text-align: center;
-	border-style: solid;
-	border-width: 5px;
   }
 
 #library {
@@ -69,7 +72,7 @@ iframe {
 	margin: 0 auto;
 }
 nav{
-	position: -webkit-sticky;
+	
 	position: sticky;
 	top: 0;
 	z-index: 1;
@@ -89,13 +92,11 @@ nav li {
     padding: 8px;
     display:block;
     float: left;
-
 }
 nav li a {
     padding: 8px 0 8px 16px;
     text-align: center;
-    color: white;
-    
+    color: black ;
     padding: 14px 16px;
     display: block;
 

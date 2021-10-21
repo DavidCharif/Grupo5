@@ -5,37 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/estilos.css">
+     <link rel="stylesheet" href="/styles/menudropdown.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
 <body>
     
-    <nav>
+           <nav>
             <ul>
-      <li><a href="/inicio">Inicio</a></li>
+     <li><a href="/inicio">Inicio</a></li>
       <li><a href="#news">Libros</a></li>
       <li><a href="#contact">Carrito de compras</a></li>
-      <li><a href="#about">Sobre nosotros</a></li>
-      <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
-      <li><label>Selecciona la voz que gustes</label>
-    <select id="voice"></select></li>
-    <li>
-    <label for="volume">Volume</label>
-		<input type="range" min="0" max="1" step="0.1" name="volume" id="volume" value="1">
-	</div></li>
-    <li>
-	<div class="option">
-		<label for="rate">Rate</label>
-		<input type="range" min="0.1" max="10" step="0.1" name="rate" id="rate" value="1">
-	</div></li>
-    <li>
-	<div class="option">
-		<label for="pitch">Pitch</label>
-		<input type="range" min="0" max="2" step="0.1" name="pitch" id="pitch" value="1">
-	</div></li>
-    </ul>
-    
-    
+      <li><a href="/login">Login</a></li>
+     
+      </ul>
+        <div class="dropdown">
+          <button class="dropbtn">Control de VOZ</button>
+          <div class="dropdown-content">
+            <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+            <label>Selecciona la voz que gustes</label> <br>
+            <select id="voice"></select>
+            <label for="volume">Volumen</label>
+		        <input type="range" min="0" max="5" step="0.5" name="volume" id="volume" value="1">
+            <div class="option">
+              <label for="rate">Velocidad</label>
+              <input type="range" min="1" max="10" step="1" name="rate" id="rate" value="1">
+            </div>
+            <div class="option">
+              <label for="pitch">Pitch</label>
+              <input type="range" min="0" max="2" step="0.5" name="pitch" id="pitch" value="1">
+            </div>
+          </div>
+        </li>
+    </div>
+            
         </nav>
         <header>
             <div class="overlay">
