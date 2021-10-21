@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sprint1</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/styles/estilos.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" type="module" src="../scripts/eventos.js"></script>
+    </head>
+    <body>
+        <nav>
+            <ul>
+     <li><a href="/inicio">Inicio</a></li>
+      <li><a href="#news">Libros</a></li>
+      <li><a href="#contact">Carrito de compras</a></li>
+      <li><a href="/login">Login</a></li>
+      <div class="topnav-right">
+        <button id="activarVoz" type="button" onclick="activarVoz()">Activar Voz</button>
+      <label>Selecciona la voz que gustes</label> <br>
+      <select id="voice"></select>
+      <li>
+    <label for="volume">Volume</label>
+		<input type="range" min="0" max="1" step="0.1" name="volume" id="volume" value="1">
+	</div></li>
+    <li>
+	<div class="option">
+		<label for="rate">Velocidad</label>
+		<input type="range" min="1" max="10" step="1" name="rate" id="rate" value="1">
+	</div></li>
+    <li>
+	<div class="option">
+		<label for="pitch">Pitch</label>
+		<input type="range" min="0" max="2" step="0.1" name="pitch" id="pitch" value="1">
+	</div></li>
+  </div>  
+      </ul>
+     
+            
+            
+        </nav>
+        <header>
+            <div class="overlay">
+        <section class="cabecera">
+            <div id="tituloProyecto">
+                <br><br><br>
+                <h1 id="titulo">Libros digitales y audiolibros</h1>
+            </div>
+            <br>
+            
+        
+            <div id="txt-cabecera">
+                <br><br>
+                <p class="txtparrafo">
+                    Aqui puedes encontrar libros gratuitos y audiolibros de pago.
+                    Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
+
+                </p>
+                
+            </div>
+        
+        </div>
+        </section>
+
+        <section class="main">
+            <div class="botones">
+                <a id="enlace-registro">
+                   <button type="button" id="btn-registrar" onclick="click_registro()">Registrarse</button>
+                </a>
+            </section>
+                <div>
+                    
+            </header>
+            
+    
+      <div id="library"> 
+      
+        <div class="gallery">
+          <a>
+            <img id="edipo1" src="img/edipo.jpg" alt="Portada Edipo"  onclick="click_libro(0)" >
+           </a>
+          <!-- -div id="edipo2" class="desc">Edipo - Sofocles</div> -->
+          <div class="desc">Edipo - Sofocles</div>
+        </div> 
+      
+        <div class="gallery">
+          <a>
+            <img src="img/MILYUNA.jpg" alt="Portada Mil y una noches" onclick="click_libro(1)">
+          </a>  
+          <div class="desc">Anonimo - Las mil y una noches </div>
+        </div>
+      
+        <div class="gallery">
+          <a >
+            <img src="img/divina.jpg" alt="Divina Comedia" onclick="click_libro(2)">
+          </a>
+          <div class="desc">Dante Alighieri - La Divina Comedia</div>
+        </div>
+      
+        <div class="gallery">
+          <a >
+            <img src="img/rubendario.jpg" alt="Azul - Ruben Dario" onclick="click_libro(3)">
+          </a>
+          <div class="desc">Ruben Dario - Azul</div>
+        </div>
+        <div class="gallery">
+            <a>
+              <img src="img/poemasEdgar.jpg" alt="Portada Edgar Poe"  onclick="click_libro(4)">
+            </a>
+            <div class="desc">Edgar Poe - Poemas</div>
+          </div>
+        
+               <div class="gallery">
+            <a >
+              <img src="img/historiadesosciudades.jpg" alt="Portada Historia de dos ciudades" onclick="click_libro(5)">
+            </a>  
+            <div class="desc">Charles Dickens - Historia de dos ciudades </div>
+          </div>
+        
+          <div class="gallery">
+            <a >
+              <img src="img/desastresGuerra.jpg" alt="Desastres de la guerra - Goya" onclick="click_libro(6)">
+            </a>
+            <div class="desc">Goya - Los desastres de la Guerra</div>
+          </div>
+        
+          <div class="gallery">
+            <a >
+              <img src="img/ladroneslondres.jpg" alt="Portada los ladrones de londres" onclick="click_libro(7)">
+            </a>
+            <div class="desc">Charles Dickens - Los ladrones de londres </div>
+          </div>
+          <div class="gallery">
+            <a >
+              <img src="img/salambo.jpg" alt="Portada Salambo"  onclick="click_libro(8)">
+            </a>
+            <div class="desc">Gustave Flauvert - Salambó</div>
+          </div>
+        
+          <div class="gallery">
+            <a >
+              <img src="img/lailiada.jpg" alt="Portada La Iliada" onclick="click_libro(9)">
+            </a>  
+            <div class="desc">Homero - La Iliada </div>
+          </div>
+        
+          <div class="gallery">
+            <a >
+              <img src="img/crimenycastigo.jpg" alt="Portada Crimen y castigo" onclick="click_libro(10)">
+            </a>
+            <div class="desc">Dostoviesky - Crimen y Castigo </div>
+          </div>
+          <br><br><br><br><br>
+      </div>
+            
+        <footer>
+            <nav>
+                <ul>
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#news">Libros</a></li>
+          <li><a href="#contact">Carrito de compras</a></li>
+          <li><a href="#about">Sobre nosotros
+        
+          </a></li>
+                </ul>
+            </nav>
+        </footer>
+      
+        <script src="scripts/form.js"> </script>
+        <script src="scripts/eventos.js"></script>
+        <script src="scripts/libros.js"></script>
+        <script src="scripts/loadVoices.js"></script>
+        <script src="scripts/lecturaVoz.js"></script>
+        <script src="scripts/login.js"> </script>
+    </body>    

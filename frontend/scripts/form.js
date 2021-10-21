@@ -1,11 +1,15 @@
 function checkTelefono(){
     /*y = x.value;*/
+    
     let x = document.getElementById("telefono");
     let y = document.getElementById("telefono").value;
-    if (y.length > 7 || y.length < 7){
+    if (y.length == null){
+        return false
+    }
+    if (y.length < 7 || y.length < 13){
         x.style.background = "red";
         return false;}
-    else if (y.length == 7){
+    else {
         x.style.background = "lightgreen";
         return true; }
     }
@@ -14,7 +18,7 @@ function checkCorreo(){
    let val= document.getElementById("correo") ;
    let valor= document.getElementById("correo").value;
    let validar="falso";
-   emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+   let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
    if(emailRegex.test(valor)){
        validar="verdadero";
    }
@@ -24,10 +28,6 @@ function checkCorreo(){
    else{
        val.style.background = "white";
    }    
-
-   alert(validar);
-   
-   
    /*
    return validar;
      
@@ -55,7 +55,7 @@ function checkContrasena() {
                     if (password.length >= 8) {
 
                         x.style.background = "lightgreen";
-                        alert("Contraseña ingresada correctamente");
+                       
                         return true;
 
                 }
@@ -64,7 +64,7 @@ function checkContrasena() {
     } else {
 
     x.style.background = "red";
-    alert("La contraseña debe contener mínimo:\nUna (1) mayúscula,\nUna (1) minúscula,\nUn (1) número,\nOcho (8) ó más caracteres.");
+    /*alert("La contraseña debe contener mínimo:\nUna (1) mayúscula,\nUna (1) minúscula,\nUn (1) número,\nOcho (8) ó más caracteres.");*/
     return false;
     }
 
@@ -111,24 +111,24 @@ function checkNombre(){
     if (lastname != ""){
         if(lastname.match(alphabet)) {
             if(lastname.length >=4 && lastname.length<=30){
-                alert("Nombre correcto");
+            
                 valor.style.background = "lightgreen";
                 return true; 
             }
             else{
-                alert("DEBE SER MAYOR DE 4 Y MENOR DE 7 ");
+            
                 valor.style.background = "red";
                 return false;
             }
         }
         else {
-            alert("INGRESE SOLO ALFABETO");
+            
             valor.style.background = "red";
             return false;
         }
     }
     else{
-        alert("CAMPO NULO");
+        
         valor.style.background = "red";
         return false;
     }

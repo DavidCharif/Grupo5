@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+<script src="/scripts/login.js"> </script>
+<script src="/scripts/eventos.js"> </script>
+<link href="styles/estilos.css" rel="stylesheet">
+</head>
+<body>
+    
+    <nav>
+        <ul>
+  <li><a href="/inicio">Inicio</a></li>
+  <li><a href="#news">Libros</a></li>
+  <li><a href="#contact">Carrito de compras</a></li>
+  <li><a href="/login">Login</a></li>
+
+  </ul>
+ 
+        
+        
+    </nav>
+<header>
+       <div class="overlay">
+<h3 id="#titulo">Iniciar Sesión</h3>
+<form id="form-login" action="auth" method="POST">
+    <ul>
+    <li><label>Correo</label></li>
+    <input type ="email" name="username" required><br><br>
+    <li>  <label>Contraseña</label> </li>
+    <input type="text" name="password">
+    <br><br>
+    <li>
+    <label>Que resultado da el cuarto de 1/3 de 12000?</label><br>
+    <label>CAPTCHA</label>
+    <input type="text" id="captcha">
+    </li>
+    <br><br>
+    <li>
+    <input type ="submit" value="login">
+</li>
+</ul>
+</form>
+</div>
+</header>
+<script type="text/javascript" src="../db.js"></script>
+</body>
+</html>

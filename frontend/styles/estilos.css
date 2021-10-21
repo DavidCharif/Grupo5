@@ -104,6 +104,9 @@ nav li a:hover {
     background-color: #555;
     color: white;
 }
+.topnav-right {
+  float: right;
+}
 div.gallery {
     margin: 5px;
     border: 1px solid #ccc;
