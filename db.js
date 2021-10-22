@@ -39,22 +39,6 @@ function insertar_registro(nombre, apellido, telefono, correo, contrasena) {
 }
 
 /* Consultar tabla*/
-var objetos_tabla;
-function consultar_tabla(){
-    conexion.query('SELECT * FROM Usuarios', function(error, resultados)
-        {
-            if(error)
-            {
-                throw error;
-            }
-            else
-            {
-                objetos_tabla = resultados;
-            }
-        }
-    );
-    return objetos_tabla;
-}
 
 
 
@@ -65,6 +49,6 @@ function consultar_tabla(){
 
 
 
-export {insertar_registro, consultar_tabla, conexion};
+export {insertar_registro,  conexion};
 /*
 conexion.end();*/
