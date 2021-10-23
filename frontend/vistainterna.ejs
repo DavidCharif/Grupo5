@@ -95,9 +95,9 @@ $(function(){
     <section id="libro">
         <div id="fondolibros">
 
-            <h1><%= mensaje._nombre; %></h1>
+            <h1><%=libro.Title %></h1>
             
-            <img src=<%-mensaje._urlImg%> alt="img">
+            <img src=<%-libro.urlImgLocal%> >
             
             
         </div>
@@ -106,24 +106,24 @@ $(function(){
             <hr><br>
                     <h1 id="titulolibro">Titulo</h1>
                     <hr>
-                   <h3><%= mensaje._nombre %> </h3>
+                   <h3><%= libro.Title %> </h3>
                    <br>
                    <h2>Autor</h2>
                    <hr>
-                   <h3><%= mensaje._autor %> </h3>
+                   <h3><%= libro.Author %> </h3>
                    <br>
                    <hr>
                    <h2> Descripcion</h2>
-                   <p><%= mensaje._descripcion %></p>
+                   <p><%= libro.Description %></p>
                    <hr>
                    <h2>Fecha de publicacion</h2>
-                   <p><%= mensaje._fechapublicacion %></p>
+                   <p><%=libro.Year %></p>
         </div>
 
     </section>
     <section id="texto">
         <div >
-            <iframe id="textolibro" src="<%-mensaje._urlLibro %>" frameborder="1"></iframe>
+            <iframe id="textolibro" src="<%-libro.urlHtmLocal%>" frameborder="1"></iframe>
         </div>
     </section>
     <footer>

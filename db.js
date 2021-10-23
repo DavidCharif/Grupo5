@@ -8,7 +8,7 @@ var conexion = mysql.createConnection(
     }
 );
 
-conexion.connect(function(error)
+setTimeout(()=>{conexion.connect(function(error)
     {
         if(error)
         {
@@ -19,12 +19,12 @@ conexion.connect(function(error)
             console.log("Conexión exitosa al sql");
         }        
     }
-);
-;
+)},200);
+
 
 /* Insertar Usuario */
 function insertar_registro(nombre, apellido, telefono, correo, contrasena) {
-    conexion.query("INSERT INTO Usuarios(Nombre, Apellido, Telefono, Correo, Contraseña) VALUES ('"+nombre+"' , '"+apellido+"', '"+telefono+"', '"+correo+"', '"+contrasena+"')", function(error, resultados)
+    conexion.query("INSERT INTO Usuarios(Nombre, Apellido, Telefono, Correo, Contrasena) VALUES ('"+nombre+"' , '"+apellido+"', '"+telefono+"', '"+correo+"', '"+contrasena+"')", function(error, resultados)
         {
             if(error)
             {

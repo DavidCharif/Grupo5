@@ -108,85 +108,18 @@ $(function(){
             
     
       <div id="library"> 
-      
-        <div class="gallery">
-          <a>
-            <img id="edipo1" src="img/edipo.jpg" alt="Portada Edipo"  onclick="click_libro(0)" >
-           </a>
-          <!-- -div id="edipo2" class="desc">Edipo - Sofocles</div> -->
-          <div class="desc">Edipo - Sofocles</div>
-        </div> 
-      
-        <div class="gallery">
-          <a>
-            <img src="img/MILYUNA.jpg" alt="Portada Mil y una noches" onclick="click_libro(1)">
-          </a>  
-          <div class="desc">Anonimo - Las mil y una noches </div>
-        </div>
-      
-        <div class="gallery">
-          <a >
-            <img src="img/divina.jpg" alt="Divina Comedia" onclick="click_libro(2)">
-          </a>
-          <div class="desc">Dante Alighieri - La Divina Comedia</div>
-        </div>
-      
-        <div class="gallery">
-          <a >
-            <img src="img/rubendario.jpg" alt="Azul - Ruben Dario" onclick="click_libro(3)">
-          </a>
-          <div class="desc">Ruben Dario - Azul</div>
-        </div>
-        <div class="gallery">
-            <a>
-              <img src="img/poemasEdgar.jpg" alt="Portada Edgar Poe"  onclick="click_libro(4)">
-            </a>
-            <div class="desc">Edgar Poe - Poemas</div>
-          </div>
-        
-               <div class="gallery">
-            <a >
-              <img src="img/historiadesosciudades.jpg" alt="Portada Historia de dos ciudades" onclick="click_libro(5)">
-            </a>  
-            <div class="desc">Charles Dickens - Historia de dos ciudades </div>
-          </div>
-        
+         
+         <% libros.forEach(function(libro) { %>
           <div class="gallery">
-            <a >
-              <img src="img/desastresGuerra.jpg" alt="Desastres de la guerra - Goya" onclick="click_libro(6)">
-            </a>
-            <div class="desc">Goya - Los desastres de la Guerra</div>
-          </div>
-        
-          <div class="gallery">
-            <a >
-              <img src="img/ladroneslondres.jpg" alt="Portada los ladrones de londres" onclick="click_libro(7)">
-            </a>
-            <div class="desc">Charles Dickens - Los ladrones de londres </div>
-          </div>
-          <div class="gallery">
-            <a >
-              <img src="img/salambo.jpg" alt="Portada Salambo"  onclick="click_libro(8)">
-            </a>
-            <div class="desc">Gustave Flauvert - Salambó</div>
-          </div>
-        
-          <div class="gallery">
-            <a >
-              <img src="img/lailiada.jpg" alt="Portada La Iliada" onclick="click_libro(9)">
-            </a>  
-            <div class="desc">Homero - La Iliada </div>
-          </div>
-        
-          <div class="gallery">
-            <a >
-              <img src="img/crimenycastigo.jpg" alt="Portada Crimen y castigo" onclick="click_libro(10)">
-            </a>
-            <div class="desc">Dostoviesky - Crimen y Castigo </div>
-          </div>
-          <br><br><br><br><br>
+            <a href='/recibir/<%=libro.idlibro%>'>
+               <img id="libro" src="<%-libro.urlImgLocal%>" alt="Portada Edipo" >
+                </a>
+                <div class="desc"><%= libro.Title %> -  <%= libro.Author %></div>
+                </div> 
+         <% }); %> 
       </div>
-            
+ <br><br>
+  
         <footer>
             <nav>
                 <ul>
@@ -202,8 +135,8 @@ $(function(){
       
         <script src="scripts/form.js"> </script>
         <script src="scripts/eventos.js"></script>
-        <script src="scripts/libros.js"></script>
-        <script src="scripts/index.js"></script>
+        
+       
         <script src="scripts/loadVoices.js"></script>
         <script src="scripts/lecturaVoz.js"></script>
         

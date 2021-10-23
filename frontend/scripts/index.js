@@ -1,5 +1,0 @@
-$(function(){
-    $(".nombreButton").append("David");
-    
-    
-})

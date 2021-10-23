@@ -4,19 +4,18 @@
 function click_libro(number){
     
     window.location.href = `recibir/${number}`;
-    window.location.href = `recibir/${number}`;
     
+  
 }
 function click_registro(){
     
     window.location.href = `/registrar`;
-    window.location.href = `/registrar`;
-    
+   
 }
 function click_login(){
     
     window.location.href = `/login`;
-    window.location.href = `/login`;
+  
     
 }
 
