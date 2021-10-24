@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+var mysql = require("mysql");
 var conexion = mysql.createConnection(
     {
         host:'localhost',
@@ -49,6 +49,7 @@ function insertar_registro(nombre, apellido, telefono, correo, contrasena) {
 
 
 
-export {insertar_registro,  conexion};
+module.exports = {insertar_registro, conexion};
+
 /*
 conexion.end();*/

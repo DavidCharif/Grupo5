@@ -1,10 +1,15 @@
 
-import express from 'express';
-import {insertar_registro, conexion} from './db.js';
-import path from 'path';
-import session from 'express-session';
-import bodyParser from 'body-parser';
-let connection = conexion;
+var express = require("express");
+var dbFiles = require("./db.js");
+var insertar_registro = dbFiles.insertar_registro
+var conexion = dbFiles.conexion;
+var path = require("path"); 
+var session = require("express-session");
+var bodyParser = require('body-parser');
+
+
+var wikipediaParser = require('./WikipediaParser');
+let linia;
 
 let usuario;
 let boolLog = false;
@@ -39,16 +44,16 @@ app.set('views', dirForm);
 app.get("/", function (petition,respuesta){
         
     setTimeout(()=>{
-        connection.query('SELECT * FROM libros',function(req,res){
+        conexion.query('SELECT * FROM libros',function(req,res){
     libros = res;
     
-})},300)
+})},350)
     setTimeout(()=>{if (boolLog == false){
     nombre =  "";
     respuesta.render("index", {libros, nombre, boolLog});
 } else {
     respuesta.render("index", {libros,nombre, boolLog});
-}},320)
+}},370)
 });
 
 //Pasos necesarios para hacer la web de vista Libros dinamica 
@@ -58,7 +63,7 @@ app.get("/", function (petition,respuesta){
 app.get('/recibir/:number', function(petition, respuesta){
 //recibimos el numero lo agregamos con el index a la lista importada
     var number = petition.params.number;   
-    console.log(number);
+    /*console.log(number);*/
     setTimeout(()=>{conexion.query('SELECT * FROM libros WHERE idlibro = ?',[number],function(req,res){
         libro = JSON.parse(JSON.stringify(res[0]));}
          
@@ -66,7 +71,7 @@ app.get('/recibir/:number', function(petition, respuesta){
         )},300)
         // Se coloca el nombre del archivo ejs vistaInterna y se envia el objeto a ese pagina
         setTimeout(() => {
-            console.log(libro[0])
+            
     respuesta.render('vistainterna', {libro, nombre, boolLog}) ;
         },310)
       }
@@ -124,7 +129,7 @@ app.post('/auth', function(request, response) {
 	var password = request.body.password;
 	
 	if (username && password) {
-		connection.query('SELECT * FROM Usuarios WHERE Correo = ? AND Contrasena = ?', [username, password], function(error, results, fields) {
+		conexion.query('SELECT * FROM Usuarios WHERE Correo = ? AND Contrasena = ?', [username, password], function(error, results, fields) {
 		    if (error){console.log(error)}
 		 
 			if (results.length > 0) {
@@ -145,7 +150,7 @@ app.post('/auth', function(request, response) {
 app.get('/home', function(request, response) {
     console.log(`se ingresa al home y la variable empieza siendo ${usuario}`)
     if (boolLog) {
-    connection.query('SELECT Nombre FROM Usuarios WHERE Correo = ?', [usuario],function(error, results) {
+    conexion.query('SELECT Nombre FROM Usuarios WHERE Correo = ?', [usuario],function(error, results) {
 		      nombre = JSON.parse(JSON.stringify(results[0])); 
 		      nombre = nombre.Nombre;
 		      boolLog = true;
@@ -158,23 +163,25 @@ app.get('/logout', function(req,res){
         console.log("Loggin out")
         res.redirect('/');
     })
-    /*
+//Wiki
 
-app.get('/employee/salary', (req, res) => {
-  
-    // Render method takes two parameter
-    // first parameter is the ejs file to 
-    // render second parameter is an 
-    // object to send to the ejs file
-    res.render('index.ejs', { empSalary: empSalary });
-})
-*/
-export {nombre};
+
 
 app.get("/perfil",function(req,res){
     res.render('vistaUsuario',{nombre,boolLog});
 } )
+app.get("/autores",function(req,res){
+    res.render('autores',{nombre,boolLog,linia});
+} )
 
 
 
-
+wikipediaParser.fetchArticleElements('Fiódor_Dostoyevski').then(function(result)
+{
+   /*console.log(result);*/
+linia = result;
+   
+}).catch(function(error)
+{
+  console.log(error);
+});

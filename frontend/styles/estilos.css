@@ -52,6 +52,29 @@ iframe {
 	border-style: solid;
 	border-width: 5px;
   }
+@media only screen and (max-width: 750px) {
+	#libro{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}	
+	
+  #fondolibros {
+    background-color: lightblue;
+    width:100%;
+  	
+  }
+  #fondolibros img{
+	border-style:dotted;
+	border-width: 5px;
+  	height: 60%;
+  }
+	  
+  #descripcion {
+  	background-color: lightgreen;
+    width:100%;
+  }
+}
 
 #library {
 	height: fit-content;
@@ -110,7 +133,7 @@ div.gallery {
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
-    width: 180px;
+    width: 150px;
 	text-align: center;
     
   }
@@ -120,8 +143,8 @@ div.gallery:hover {
   }
   
 div.gallery img {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
   }
   
 div.desc {

@@ -18,8 +18,8 @@
         <nav>
             <ul>
      <li><a href="/">Inicio</a></li>
-      <li><a href="#news">Libros</a></li>
-      <li><a href="#contact">Carrito de compras</a></li>
+      <li><a href="#libros">Libros</a></li>
+      <li><a href="/autores">Autores</a></li>
       <li id="textoLogin"><a href="/login">Login</a></li>
      
       </ul>
@@ -66,6 +66,8 @@ $(function(){
     $("#link2").text("Configuracion");
     $("#link3").html("<a href='/logout'> Cierra sesion </a>");
     $("#textoLogin").html('<a href="/perfil">Perfil</a>')
+    $("#enlace-registro").html('<button type="button" id="btn-registrar" >Libros </button>');
+    
     
   }
   
@@ -86,7 +88,7 @@ $(function(){
             <div id="txt-cabecera">
                 <br><br>
                 <p class="txtparrafo">
-                    Aqui puedes encontrar libros gratuitos y audiolibros de pago.
+                    Aquí puedes encontrar libros gratuitos y audiolibros de pago.
                     Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
 
                 </p>
@@ -107,7 +109,7 @@ $(function(){
             </header>
             
     
-      <div id="library"> 
+      <div id="library" name="libros"> 
          
          <% libros.forEach(function(libro) { %>
           <div class="gallery">
