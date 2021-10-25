@@ -7,7 +7,7 @@ var pitchInput = document.getElementById('pitch');
 function activarVoz(){
     setTimeout(function(){
         $(function(){    
-	$("a, .gallery , div , .desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span").hover(function(){
+	$("a, .gallery , div , .desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li").hover(function(){
     event.preventDefault();
 
 

@@ -8,7 +8,7 @@ function activarVozIframe(){
     console.log("funcion activada")
     setTimeout(function(){
         $(function(){    
-	$("a, .gallery ,#textolibro, div , .desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, .accordion-toggle, .Titulo-interna, span, #iframe, .iframe").hover(function(){
+	$("a, .gallery ,#textolibro, div , .desc ,.titulo, .title, .filas, p, b, h5, h4, h3, h2, h1, strong, li, #iframe, .iframe").hover(function(){
     event.preventDefault();
 
 

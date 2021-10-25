@@ -66,7 +66,7 @@ $(function(){
     $("#link2").text("Configuracion");
     $("#link3").html("<a href='/logout'> Cierra sesion </a>");
     $("#textoLogin").html('<a href="/perfil">Perfil</a>')
-    $("#enlace-registro").html('<button type="button" id="btn-registrar" >Autores </button>');
+    $("#enlace-registro").html('<button type="button" id="btn-registrar" >Biografias </button>');
     
     
   }
@@ -80,7 +80,7 @@ $(function(){
         <section class="cabecera">
             <div id="tituloProyecto">
                 <br><br><br>
-                <h1 id="titulo">Autores</h1>
+                <h1 id="titulo">Biografias</h1>
             </div>
             <br>
             
@@ -88,8 +88,11 @@ $(function(){
             <div id="txt-cabecera">
                 <br><br>
                 <p class="txtparrafo">
-                   Conoce los autores que tenemos en el catalogo.
-                   
+                    Descubre un poco más de la vida de aquellos artistas, sus motivaciones
+                    situaciones sociales, el ambiente donde crecieron. Todo conocimiento enriquese.
+                    El contenido proviene de la pagina oficial de Wikipedia.
+                    ¡Activa la voz y disfruta la lectura!
+
                 </p>
                 
             </div>
@@ -108,46 +111,53 @@ $(function(){
             </header>
             
     
-      <div id="autores" name="bio"> 
+      <div id="biografia" name="bio"> 
          
-         <h1>Autores disponibles</h1>
-         <h3>Al darle click al nombre iras a su biografia de Wikipedia</h3>
-       
-              <% autores.forEach((autor)=>{ %>
-                <ol>
-                    <il><a href="/biografia/<%-autor.author%>"><%-autor.author%></a></il>
-                    
-                </ol>
+         
+          
+             <% linia.forEach((linea)=>{ %>
+                <% let type = linea.type; %>
+                <% if  (type == "MAIN_TITLE_INFO") { %>
+                <h1><%-linea.text%></h1>
+                <% } %>
                 
+                <% if  (type == "TYPE_TITLE_INFO") { %>
+                <p><%-linea.text%></p>
+                <% } %>
+                
+                <% if  (type == "TYPE_PARAGRAPH_INFO") { %>
+                
+                <p><%-linea.text%></p>
+                <% } %>
+                
+                
+                
+                
+           <h3><%-linea.text%></h3>
                 <%  }) %>
-      
+           
+            
       </div>
  <br><br>
   
         <footer>
             <nav>
-                
-                 <ul>
+              <ul>
      <li><a href="/">Inicio</a></li>
       <li><a href="#libros">Libros</a></li>
       <li><a href="/autores">Autores</a></li>
-      
+
      
       </ul>
-        
-          </a></li>
-                </ul>
-                
             </nav>
         </footer>
-      <script src="/scripts/loadVoices.js"></script>
+ <script src="/scripts/loadVoices.js"></script>
         <script src="/scripts/form.js"> </script>
         <script src="/scripts/eventos.js"></script>
         
        
         
         <script src="/scripts/lecturaVoz.js"></script>
-        
         
         
 

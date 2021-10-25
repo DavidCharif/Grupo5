@@ -4,6 +4,10 @@ var idWiki;
 var request = require("request"); // easier HTTP library
 var jsdom = require("jsdom"); // javascript implementaion of DOM, used here for scrapping web pges
 const { JSDOM } = jsdom;
+var infobosHtml;
+var infoBioBoxChilds ;
+ var rowInfoTag;
+var rowInfoText;
 var TYPE_MAIN_TITLE = "MAIN_TITLE";
 var TYPE_MAIN_IMAGE_URL = "MAIN_IMAGE_URL";
 var TYPE_TITLE = "TITLE";
@@ -23,7 +27,7 @@ var LIST_TYPE_INDENTED = "INDENTED";
 var IMAGE_SIDE_NONE = "NONE";
 var IMAGE_SIDE_RIGHT = "RIGHT";
 var IMAGE_SIDE_LEFT = "LEFT";
-
+var elementsInfoBioBox = [];
 var STATUS_ERROR_WIKI_API = "ERROR_WIKI_API";
 var STATUS_ERROR_WIKI_NOT_REACHABLE = "ERROR_WIKI_NOT_REACHABLE";
 var STATUS_EROROR_PARSING_FAILED = "ERROR_PARSING_FAILED";
@@ -108,10 +112,7 @@ function parseWikipediaHTML(html, articleTitle, imageURL)
     // push main image
     var foundMainImage = false;
     var mainImageElement = imageURL ? createMainImageElement(imageURL, null, null) : extractMainImageFromInfobox(mainElement);
-    var infoBioBox = extractInfobox(mainElement);
-    console.log(`infoBioBox es ${infoBioBox}`)
-    console.log(`Main elemente es ${mainElement}`)
-   
+
     if (mainImageElement != null)
     {
         elements.push(mainImageElement);
@@ -136,6 +137,7 @@ myPromise.then(
     if (coordinatesElement) coordinatesElement.innerHTML = '';
 
     var wikiElements = mainElement.childNodes;
+    console.log(`Wiki lenght es es ${wikiElements.length}`)
     for (var i = 0; i < wikiElements.length; i++)
     {
         var currentElement = wikiElements[i];
@@ -208,7 +210,32 @@ myPromise.then(
             }
         }
     }
+    var infoboxes = mainElement.getElementsByClassName("infobox biography vcard");
+    infoboxes = infoboxes[0];
+    const hasInfo= new Promise((resolve, reject) => {
+  if (infoboxes.rows) {
+    var listaInfoList = extractInfobox(mainElement)
+        elements = elements.concat(listaInfoList);
+    resolve(elements)
+  } else {
+    const why = 'Still working on something else'
+    reject(why)
+  }
+})
+hasInfo.then(
+  function(value) {console.log(value);},
+  function(error) {console.log(error);}
+);
 
+    
+   
+    
+    //console.log(`lista length = ${elements.length}`);
+    //console.log(`lista info bio box = ${listaInfoList.length}`);
+    
+    //console.log(`lista length despues de sumar = ${elements.length}`);
+//    console.log(elements[1])
+  //  console.log(listaInfoList[1])
     return elements;
 }
 
@@ -350,25 +377,121 @@ function extractInfobox(mainElement)
 {
     var infoboxes = mainElement.getElementsByClassName("infobox biography vcard");
     infoboxes = infoboxes[0];
-    console.log(`infobos es ${infoboxes}`);
+    infobosHtml = infoboxes.rows; 
+    // Prueba y error
     
-    var infobosHtml = infoboxes.rows;
+    console.log(infoboxes.rows.length);
     
-    console.log(infobosHtml[0]);
-    var lastRow = infoboxes.rows;
-    for(let i=0;i<infoboxes.rows.length;i++){
-        let rowInfo = infoboxes.rows[i];
+
+  console.log("con rows index cells ")
+   
+        let x = infoboxes.rows[4].cells[0]
+        console.log(x.hasChildNodes());
+        console.log(x);
+        /*
+    console.log(infoboxes.rows[4].cells[0].textContent)
+    
+        console.log(infoboxes.rows[4].cells[1].tagName)
+    console.log(infoboxes.rows[4].cells[1].textContent)
+    console.log("con rows index")
+    console.log(infoboxes.rows[4].tagName)    
+    console.log(infoboxes.rows[4].textContent)    
+        console.log("Con cells items")
+
+    console.log(infobosHtml.item(4).cells.item(0).tagName)
+    console.log(infobosHtml.item(4).cells.item(0).textContent)
+  
+ */
+    //27
+    //Length of the rows
+    for(let i=0;i<infobosHtml.length;i++){
         
-        console.log(rowInfo.textContent);
+    
+        // SInce its a table we need to access to the cells
+        for(let u=0; u<infobosHtml[i].cells.length; u++){
+            
+                if (infobosHtml[i].cells.hasChildNodes){
+                    let children = infobosHtml[i].cells.childNodes;
+                    for (let p = 0; p < children.length; p++) {
+                        console.log("Child items")
+                        
+                         rowInfoTag  = children[p]
+                         console.log(rowInfoTag.nodeName)
+                         rowInfoText = children[p].textContent
+                         console.log(rowInfoText)
+                }
+            } else {
+                rowInfoTag = infobosHtml[i].cells[u].tagName
+                rowInfoText= infobosHtml[i].cells[u].textContent}
+        }
+          
+     
         
+        switch(rowInfoTag){
+                
+            case "TH":
+                if(i == 0){
+                elementsInfoBioBox.push(createTextElement("MAIN_TITLE_INFO",rowInfoText))
+               console.log("Se agrego elemento Main")
+                break;
+                } 
+            case "TH":
+                elementsInfoBioBox.push(createTextElement("TYPE_TITLE_INFO",rowInfoText))
+                console.log("Se agrego elemento Titulo")
+                break;
+            case "I":
+            case "P":
+            case "TD":
+                elementsInfoBioBox.push(createTextElement("TYPE_PARAGRAPH_INFO",rowInfoText))
+               console.log("Se agrego elemento Texto")
+                break;
+        }
+        
+        
+  
+        //console.log(rowInfo.tagName);
+        //console.log(rowInfo.textContent);
+    
     }
+       
+    return elementsInfoBioBox;    }
+/*
+function AddInfoList(mainElement){
+    var infoBioBox = extractInfobox(mainElement);
+    var infoBioBoxChilds = infoBioBox [0];
+    var infoBioBoxChildsNow = infoBioBoxChilds.childNodes;
+    var InfoBioElements = infoBioBoxChildsNow;
     
     
+    console.log(`infoBioELements es ${InfoBioElements}`)
+    
+    console.log(`infoBioELements lenght es ${InfoBioElements.length}`)
+ 
+ 
+for (var i = 0;i < InfoBioElements.length; i++){
+    var currentElement = InfoBioElements.rows[i];
+    var elementText = currentElement.textContent.trim();
+    switch(currentElement.tagName){
+        case "th":
+            elementsInfoBioBox.push(createTextElement("MAIN_TITLE_INFO"),elementText)
+            console.log("Se agrego elemento Main")
+            break;
+        case "th":
+            elementsInfoBioBox.push(createTextElement("TYPE_TITLE_INFO"),elementText)
+            console.log("Se agrego elemento Titulo")
+            break;
+        case "td":
+            elementsInfoBioBox.push(createTextElement("TYPE_PARAGRAPH_INFO"),elementText)
+            console.log("Se agrego elemento Testo")
+            break;
+    }
+} return elementsInfoBioBox;
+}
+  */  
     
     
 
-    return infobosHtml;
-}
+
 
 
 function thumbImageToFullImageURL(url)

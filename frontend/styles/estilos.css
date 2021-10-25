@@ -1,8 +1,5 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
-body{
-	height: 1200px;
 
-}
 .text {
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
@@ -44,6 +41,11 @@ iframe {
 	border-width: 5px;
 	  
   }
+  #autores{
+  	padding:5px;
+  	text-align: center;
+  	font-size:calc(2vw + 2vh + 1vmin);
+  }
   #descripcion{
 	background-color: rgb(145, 137, 137);	  
 	width: 50%;	  
@@ -51,6 +53,10 @@ iframe {
 	text-align: center;
 	border-style: solid;
 	border-width: 5px;
+  }
+    #biografia{
+  	padding:10px;
+  	text-align:center;
   }
 @media only screen and (max-width: 750px) {
 	#libro{
@@ -68,6 +74,10 @@ iframe {
 	border-style:dotted;
 	border-width: 5px;
   	height: 60%;
+  }
+  #biografia{
+  	padding:10px;
+  	text-align:center;
   }
 	  
   #descripcion {
@@ -92,7 +102,7 @@ iframe {
 	margin: 0 auto;
 }
 nav{
-	position: -webkit-sticky;
+
 	position: sticky;
 	top: 0;
 	z-index: 1;
@@ -163,6 +173,7 @@ header {
 	position: relative;
 	overflow: hidden;
 	border-radius: 0 0 0 0;
+	font-size:2vw;
 }
 header .overlay{
 	width: 100%;
@@ -177,7 +188,7 @@ input { /* sin espacios*/
 
 #titulo {
 	font-family: 'Roboto', sans-serif;
-	font-size: 50px;
+	
 	margin-bottom: 30px;
 	font-size:calc(2vw + 2vh + 1vmin);
 	text-shadow: 0px 0px 5px rgb(0, 0, 0);
@@ -189,7 +200,7 @@ input { /* sin espacios*/
 
 .txtparrafo{
     color: rgb(255, 255, 255);
-	font-size: calc(1vw + 1vh + 0.5vmin);
+	font-size: 2em;
 	text-shadow: 0px 0px 5px rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0,50%)}
 

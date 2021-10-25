@@ -16,7 +16,7 @@ let boolLog = false;
 let nombre;
 let libros;
 let libro;
-
+let autores;
 const app = express();
 const dirForm = path.resolve("frontend/")
 // Iniciamos el servidor en la carpeta con los archivos necesarios
@@ -170,18 +170,46 @@ app.get('/logout', function(req,res){
 app.get("/perfil",function(req,res){
     res.render('vistaUsuario',{nombre,boolLog});
 } )
+
 app.get("/autores",function(req,res){
-    res.render('autores',{nombre,boolLog,linia});
-} )
-
-
-
-wikipediaParser.fetchArticleElements('Fiódor_Dostoyevski').then(function(result)
-{
-   /*console.log(result);*/
-linia = result;
+    setTimeout(()=>{
+           conexion.query("SELECT author FROM libros ORDER BY author  Asc", function(error,resultado){
+            if(error){
+                console.log(error)
+                
+            } else {
+              autores   = resultado
+               process.nextTick(() => {
+        res.render('autores',{nombre,boolLog,autores});
+    })
+            }
+        
+           })},100)
+    
    
+ }) 
+app.get("/biografia/:author",function(petition, respuesta) {
+    let author = petition.params.author;
+    setTimeout(()=>{
+            
+    wikipediaParser.fetchArticleElements(author).then(function(result)
+{
+   linia = result;
+   process.nextTick(() => {
+  //do something
+  respuesta.render("biografias",{nombre,boolLog,linia});
+})
 }).catch(function(error)
 {
   console.log(error);
-});
+}) },250)
+
+
+    
+})
+
+
+
+
+
+
