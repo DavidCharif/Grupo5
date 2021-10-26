@@ -18,7 +18,7 @@
         <nav>
         <ul>
      <li><a href="/">Inicio</a></li>
-      <li><a href="#libros">Libros</a></li>
+      <li><a href="/">Inicio</a></li>
       <li><a href="/autores">Autores</a></li>
       <li id="textoLogin"><a href="/login">Login</a></li>
      
@@ -111,15 +111,17 @@ $(function(){
             
     
       <div id="library" name="libros"> 
-         
+      
          <% libros.forEach(function(libro) { %>
           <div class="gallery">
-            <a href='/recibir/<%=libro.idlibro%>'>
+            <a href='/recibir/<%-libro.idlibro%>'>
                <img id="libro" src="<%-libro.urlImgLocal%>" alt="Portada Edipo" >
                 </a>
                 <div class="desc"><%= libro.Title %> -  <%= libro.Author %></div>
                 </div> 
-         <% }); %> 
+         <% }); %>    
+  
+         
       </div>
  <br><br>
   

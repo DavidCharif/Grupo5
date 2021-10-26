@@ -10,18 +10,16 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <nav>
+<nav>
             <ul>
      <li><a href="/">Inicio</a></li>
-      <li><a href="#libros">Libros</a></li>
+      <li><a href="/">Inicio</a></li>
       <li><a href="/autores">Autores</a></li>
       <li id="textoLogin"><a href="/login">Login</a></li>
      
       </ul>
-      </nav>
       
-      <div class='FondoDropdown'>
+      <div class='fondoDropdown'>
       
         <div class="dropdown" style="float:left;">
   <button class="dropbtn">Control de Audio</button>
@@ -54,7 +52,22 @@
   </div>
 </div>
 </div>
+<script>
 
+$(function(){
+
+  if (<%=boolLog%> != false){
+    $("#link1").html("<a href='/perfil'> Tu perfil </a>");
+    $("#link2").text("Configuracion");
+    $("#link3").html("<a href='/logout'> Cierra sesion </a>");
+    $("#textoLogin").html('<a href="/perfil">Perfil</a>')
+    $("#enlace-registro").html('<button type="button" id="btn-registrar" >Biografias </button>');
+    
+    
+  }
+  
+})
+</script>
 </nav>
         
         <header>
@@ -86,8 +99,8 @@
             <h1><%=nombre %></h1>
             
             <p>Tus libros favoritos</p>
-            <% if (isFav) { %>
-           <% favbooks.forEach(function(libro) { %>
+            
+           <% listFavbooks.forEach((libro)=> { %>
           <div class="gallery">
             <a href='/recibir/<%=libro.idLibro%>'>
                <img id="libro" src="<%=libro.UrlImg%>" alt="Portada Edipo" >
@@ -95,8 +108,7 @@
                 <div class="desc"><%= libro.Titulo %></div>
                 </div> 
          <% }); %>       
-         <% } %>
-           
+      
            
      
                 
