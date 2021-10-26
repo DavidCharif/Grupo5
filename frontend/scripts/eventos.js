@@ -13,12 +13,8 @@ function click_registro(){
    
 }
 function click_login(){
-    
     window.location.href = `/login`;
-  
-    
 }
-
 
 function agregarRegistro() {
     console.log("Se ingreso a agregar registro");

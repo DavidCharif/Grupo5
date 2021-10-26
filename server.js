@@ -10,13 +10,18 @@ var bodyParser = require('body-parser');
 
 var wikipediaParser = require('./WikipediaParser');
 let linia;
-
+let idUsuario;
 let usuario;
 let boolLog = false;
 let nombre;
 let libros;
 let libro;
+let idLibro;
 let autores;
+let favbooks;
+let listFavbooks;
+let mensaje;
+let isFav = false;
 const app = express();
 const dirForm = path.resolve("frontend/")
 // Iniciamos el servidor en la carpeta con los archivos necesarios
@@ -42,19 +47,25 @@ app.set('view engine','ejs');
 app.set('views', dirForm);
 //Primer request del usuario que retorna el index
 app.get("/", function (petition,respuesta){
-        
-    setTimeout(()=>{
-        conexion.query('SELECT * FROM libros',function(req,res){
-    libros = res;
-    
-})},350)
-    setTimeout(()=>{if (boolLog == false){
-    nombre =  "";
-    respuesta.render("index", {libros, nombre, boolLog});
-} else {
-    respuesta.render("index", {libros,nombre, boolLog});
-}},370)
-});
+     conexion.query('SELECT * FROM libros',function(req,res){
+    libros = res;})
+    process.nextTick(()=>{
+    console.log("Primer then")
+        if (boolLog == false){
+            nombre =  "";
+            idUsuario = null;
+            isFav = false;
+        } else {
+            nombre = nombre;
+            idUsuario = idUsuario;
+            
+    }})
+    process.nextTick(()=>{
+       console.log("Segundo then")
+        respuesta.render("index", {libros, nombre, boolLog, isFav});    
+      
+    })
+       });
 
 //Pasos necesarios para hacer la web de vista Libros dinamica 
 
@@ -64,19 +75,27 @@ app.get('/recibir/:number', function(petition, respuesta){
 //recibimos el numero lo agregamos con el index a la lista importada
     var number = petition.params.number;   
     /*console.log(number);*/
-    setTimeout(()=>{conexion.query('SELECT * FROM libros WHERE idlibro = ?',[number],function(req,res){
-        libro = JSON.parse(JSON.stringify(res[0]));}
-         
-        
-        )},300)
-        // Se coloca el nombre del archivo ejs vistaInterna y se envia el objeto a ese pagina
-        setTimeout(() => {
-            
-    respuesta.render('vistainterna', {libro, nombre, boolLog}) ;
-        },310)
-      }
-);
-
+    conexion.query('SELECT * FROM libros WHERE idlibro = ?',[number],function(req,res){
+        libro = res[0];
+       idLibro = libro.idlibro;
+       console.log(`id libro es ${idLibro}`)
+        if (idUsuario != null){   
+        process.nextTick(()=>{
+        conexion.query("SELECT * FROM favbooks WHERE idLibro = '"+idLibro+"'AND idUsuario ='"+idUsuario+"'" ,function(error, resultado) {
+                if(error){
+                    console.log("No esta en favoritos");
+                } else {
+                    isFav = true;
+                    console.log(`El id del usuario es ${idUsuario}`)
+                    console.log(`id libro es favorito? ${isFav}`);
+                }})
+               })} 
+               
+                    
+        })
+        process.nextTick(()=>{
+               respuesta.render('vistainterna', {libro, nombre, boolLog, isFav})})
+});
 // Devuelve al inicio despues de dar click en inicio en la barra de navegacion
 
 
@@ -109,7 +128,7 @@ app.post('/post', function(request, respuesta)
                 respuesta.render('index',{nombre,boolLog});            
             }
         })
-        // body...
+       
     }
     
 });
@@ -135,6 +154,8 @@ app.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				usuario = username;
 				boolLog = true;
+				idUsuario = results[0].IdUsuario;
+				console.log(`idUsuario es ${idUsuario}`);
 				response.redirect('/home');
 			} else {
 				response.send('Incorrect Username and/or Password!');
@@ -160,6 +181,7 @@ app.get('/home', function(request, response) {
 app.get('/logout', function(req,res){
         nombre = ""
         boolLog = false;
+        idUsuario = null;
         console.log("Loggin out")
         res.redirect('/');
     })
@@ -168,8 +190,39 @@ app.get('/logout', function(req,res){
 
 
 app.get("/perfil",function(req,res){
-    res.render('vistaUsuario',{nombre,boolLog});
-} )
+ 
+    if (isFav){
+      conexion.query("UPDATE favbooks SET Titulo = (SELECT title FROM libros WHERE favbooks.idLibro = libros.idlibro)",
+       function(error,resultado){
+       if(error)
+       {console.log("error actualizando lista primera etapa")}
+       else {
+        console.log("cargando libros 1")
+        process.nextTick(() => {
+        conexion.query("UPDATE favbooks SET URLIMG = (SELECT urlImgLocal FROM libros WHERE favbooks.idlibro = libros.idlibro)",function(error, resultado) {
+            if(error){console.log(error)}
+            else {console.log("cargando libros 2")
+            favbooks = resultado; 
+            process.nextTick(() => {
+                       conexion.query("SELECT * FROM favbooks WHERE idUsuario = '"+idUsuario+"'",function(error,resultado){
+                           process.nextTick(()=>{
+                            favbooks = resultado;
+                            console.log("Se termino de procesar la informacion");
+                            res.render('vistaUsuario',{nombre,boolLog,isFav,favbooks});})})})}})})}})}
+                            res.render('vistaUsuario',{nombre,boolLog,isFav,favbooks})
+                            }
+                            )
+   
+    
+    
+
+   
+            
+        
+    
+
+
+  
 
 app.get("/autores",function(req,res){
     setTimeout(()=>{
@@ -202,10 +255,33 @@ app.get("/biografia/:author",function(petition, respuesta) {
 }).catch(function(error)
 {
   console.log(error);
-}) },250)
+}) },250)})
 
+app.get("/addFav",function(petition, respuesta) {
+    conexion.query("INSERT INTO favbooks(idUsuario,idLibro) VALUES ('"+idUsuario+"','"+idLibro+"')", function(error, resultados){
+        if(error){
+            throw error
+        } else {
+            console.log("Agregado a fav");
+            // Actualizamos la lista con informacion necesaria para el funcionamiento
+ 
+        }
+   respuesta.redirect("back");
+    })
+})
 
-    
+app.get("/delFav",function(petition, respuesta) {
+     conexion.query("DELETE FROM favbooks WHERE idLibro = ('"+idLibro+"')", function(error, resultados){
+        if(error){
+            throw error
+        } else {
+            isFav = false;
+            console.log("Eliminado");
+            // Actualizamos la lista con informacion necesaria para el funcionamiento
+ 
+        }
+   respuesta.redirect("back");
+    })
 })
 
 
