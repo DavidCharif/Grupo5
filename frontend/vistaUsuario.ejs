@@ -11,13 +11,14 @@
 </head>
 <body>
 <nav>
-            <ul>
+               <ul>
      <li><a href="/">Inicio</a></li>
-      <li><a href="/">Inicio</a></li>
+      <li><a href="/">Libros</a></li>
       <li><a href="/autores">Autores</a></li>
       <li id="textoLogin"><a href="/login">Login</a></li>
      
       </ul>
+      
       
       <div class='fondoDropdown'>
       
@@ -75,7 +76,7 @@ $(function(){
                 <section class="cabecera">
                     <div id="tituloProyecto">
                         <br><br><br>
-                        <h1 id="titulo">Libros digitales y audiolibros</h1>
+                        <h1 id="titulo">Bibliolector</h1>
                     </div>
                     <br>
                     
@@ -83,10 +84,10 @@ $(function(){
                     <div id="txt-cabecera">
                         <br><br>
                         <p class="txtparrafo">
-                            Aquí puedes encontrar libros gratuitos y audiolibros de pago.
-                            Actualizaremos nuestro material cada vez que encontremos libros creative commons o sin derecho de autor.
-        
-                        </p>
+                            Aquí puedes encontrar tus libros favoritos,
+                            -Ultimo libro abierto con la hoja en la que quedaste
+                            -Personalizar tu perfil!
+                            </p>
                         
                     </div>
                 
@@ -97,30 +98,38 @@ $(function(){
         <div id="fondolibros">
 
             <h1><%=nombre %></h1>
+            <br><br>
+              
+           
+            <p id="librosfavoritos"></p>
             
-            <p>Tus libros favoritos</p>
+           <br><br>
+           
+         <script>
+         $(function(){
+            if (<%=hasFav%>){
+            <%=listFavbooks%>.forEach((libro)={
             
-           <% listFavbooks.forEach((libro)=> { %>
-          <div class="gallery">
-            <a href='/recibir/<%=libro.idLibro%>'>
-               <img id="libro" src="<%=libro.UrlImg%>" alt="Portada Edipo" >
-                </a>
-                <div class="desc"><%= libro.Titulo %></div>
-                </div> 
-         <% }); %>       
-      
+             $("#librosfavoritos").text("Tus libros favoritos") 
+             $("#librosfavoritos").after('<div class="gallery"> <a href='/recibir/${libro.idLibro}>'><img id="libro" src=libro.UrlImg alt=`Cargando portada ${libro.Titulo}`> actualiza la pagina ></a><div class="desc"><libro.Titulo</div></div>')
+            else 
+            {
+            $(#librosfavoritos").text("No tienes libros favoritos!, Agrega unos cuantos");    
+            }
+         }     
+             
+         })      
+            }
+          
+         
+        
+        </script>
+         
+    
            
      
                 
-                </div> 
-        
-         
-            
-            <p>frases guardadas</p>
-            
-            
-            
-        </div>
+                       </div>
         <div id="descripcion">
             
           

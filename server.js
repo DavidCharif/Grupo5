@@ -21,14 +21,14 @@ let autores;
 let favbooks;
 let listFavbooks;
 let mensaje;
-
+let hasFav = false;
 let isFav = false;
 const app = express();
 const dirForm = path.resolve("frontend/")
 // Iniciamos el servidor en la carpeta con los archivos necesarios
 app.use(express.static("frontend"));
 // Se inicia el servidor
-app.listen("8080", function(){
+app.listen("80", function(){
     console.log("servidor iniciado ");
     
 });
@@ -68,6 +68,7 @@ app.get("/", function (petition,respuesta){
     }})
     process.nextTick(()=>{
        console.log("Segundo Proceso")
+       isFav = false;
         respuesta.render("index", {libros, nombre, boolLog, isFav});    
       
     })
@@ -90,6 +91,7 @@ app.get('/recibir/:number', function(petition, respuesta){
             console.log("Entro al for each de fav books")
             if (fav.idLibro == libro.idlibro){
                 isFav = true;
+                hasFav = true;
                 console.log("es un libro favorito!")
             }
         })    
@@ -98,7 +100,7 @@ app.get('/recibir/:number', function(petition, respuesta){
        
        console.log(`id libro es ${libro.Title}`)
        
-               respuesta.render('vistainterna', {libro, nombre, boolLog, isFav})});
+               respuesta.render('vistainterna', {libro, nombre, boolLog, isFav,hasFav})});
 // Devuelve al inicio despues de dar click en inicio en la barra de navegacion
 
 
@@ -160,7 +162,8 @@ app.post('/auth', function(request, response) {
 				idUsuario = results[0].IdUsuario;
 				nombre = results[0].Nombre;
 				console.log(`idUsuario es ${idUsuario}`);
-				response.render('index', {nombre,boolLog});
+				response.render('index', {nombre,boolLog,libros});
+				response.end();
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}
@@ -173,15 +176,15 @@ app.post('/auth', function(request, response) {
                 listFavbooks = resultado;
                     console.log(`El id del usuario es ${idUsuario}`)
                     console.log(`id libro es favorito? ${listFavbooks}`);
+                    hasFav=true;
                 }})
                }})
 			response.end();
 		});
 	}else {
-		console.log('Please enter Username and Password!');
-		
+		response.send('Please enter Username and Password!');
+		response.end();
 	}
-	 response.render("index", {libros, nombre, boolLog, isFav});
 });
 
 
@@ -200,11 +203,17 @@ app.get('/logout', function(req,res){
 app.get("/perfil",function(req,res){
     conexion.query("SELECT * FROM favbooks WHERE idUsuario ='"+idUsuario+"'" ,function(error, resultado) {
                 if(error){
-                    console.log("No tiene en favoritos");
+                    console.log(error)
                 } else {
+                    if (resultado.length == 0){
+                    console.log("No tiene en favoritos");
+                    hasFav = false;
+                    listFavbooks = 0;
+                    res.render('vistaUsuario',{nombre,boolLog,hasFav,listFavbooks})
+                    }
                 listFavbooks = resultado;}})
     
-    
+    if(hasFav != false){
     
    conexion.query("UPDATE favbooks SET Titulo = (SELECT title FROM libros WHERE favbooks.idLibro = libros.idlibro)",function(error,resultado){
        if(error)
@@ -217,8 +226,14 @@ app.get("/perfil",function(req,res){
             if(error){console.log(error)}
             else {
                 console.log("cargando libros 2")
+                console.log(listFavbooks.length)
+                hasFav = true;
+                  conexion.query("SELECT * FROM favbooks WHERE idUsuario ='"+idUsuario+"'" ,function(error, resultado) {
+               listFavbooks= resultado;
+            })
+                res.render('vistaUsuario',{nombre,boolLog,hasFav,listFavbooks})
             }})})
-        res.render('vistaUsuario',{nombre,boolLog,isFav,listFavbooks})})                            
+        }})                            
    
     
     
@@ -270,7 +285,10 @@ app.get("/addFav",function(petition, respuesta) {
             throw error
         } else {
             console.log("Agregado a fav");
-            isFav = true;
+            
+            conexion.query("SELECT * FROM favbooks WHERE idUsuario ='"+idUsuario+"'" ,function(error, resultado) {
+               listFavbooks= resultado;
+            })
             console.log(`id del libro despues de fav es ${idLibro}`);
             // Actualizamos la lista con informacion necesaria para el funcionamiento
  
@@ -287,13 +305,16 @@ app.get("/delFav",function(petition, respuesta) {
         if(error){
             throw error
         } else {
-            isFav = false;
+            
+            conexion.query("SELECT * FROM favbooks WHERE idUsuario ='"+idUsuario+"'" ,function(error, resultado) {
+               listFavbooks= resultado;
+            })
             console.log("Eliminado");
             console.log(`id del libro despues de eliminar es ${idLibro}`);
             // Actualizamos la lista con informacion necesaria para el funcionamiento
  
         }
-   respuesta.render("vistainterna",{libro,nombre,boolLog,isFav});
+   respuesta.render("vistainterna",{libro,nombre,boolLog,hasFav});
     })
 })
 
@@ -301,4 +322,4 @@ app.get("/delFav",function(petition, respuesta) {
 
 
 
-
+// Accesibilidad visual -
